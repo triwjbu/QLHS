@@ -1,0 +1,2 @@
+1;nguyen an kha;15/11/1993;nam;Binh Phuoc;0355181325;Phuoc@gmail.com;50;30;1;li;1;
+1;tran thi tuoi;12/11/1985;nu;Nghe An;0178778899;tuoi@gmail.com;170000;25;2;GDCT;1;

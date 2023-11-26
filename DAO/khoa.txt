@@ -1,0 +1,2 @@
+1;Ky thuat phan mem;DKP;1;
+2;Cong nghe thong tin;DCT;1;
