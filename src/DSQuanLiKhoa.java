@@ -1,21 +1,10 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.security.Provider.Service;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class DSQuanLiKhoa {
@@ -49,7 +38,7 @@ public class DSQuanLiKhoa {
             if (Integer.valueOf(dskhoa[i].getTrangThai()).equals(1)) {
                 System.out.println("Khoa " + ++n + " la:");
                 System.out.println(dskhoa[i]);
-                // dskhoa[i].xuat();
+                 dskhoa[i].xuat();
             }
         }
     }
@@ -57,6 +46,22 @@ public class DSQuanLiKhoa {
     // ---------------------Thêm giáo viên mới ------------------------
     public void them() {
         System.out.println("Them khoa moi:");
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nNhap so khoa can them ");
+        int a = sc.nextInt();
+        if (a <= 0) {
+            System.out.print("Gia tri khong phu hop!\n1.Nhap lai \n2.Thoat");
+            int choose = sc.nextInt();
+            switch (choose) {
+                case 1:
+                    them();
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            for (int i = 0; i < a; i++) {
         n = dskhoa.length;
         dskhoa = Arrays.copyOf(dskhoa, n + 1);
         dskhoa[n] = new Khoa();
@@ -64,6 +69,8 @@ public class DSQuanLiKhoa {
         dskhoa[n].nhapkhoa();
         n++;
     }
+   }
+ } 
 
     public void them(Khoa x) {
         n = dskhoa.length;
@@ -126,6 +133,30 @@ public class DSQuanLiKhoa {
         writeFile();
     }
 
+    // -------------------------Tìm kiếm------------------------
+    public void tim() {
+        Scanner sc = new Scanner(System.in);
+        n = dskhoa.length;
+        System.out.print("Nhap thong tin Khoa can tim: ");
+        String input = sc.nextLine();
+
+        // hàm tìm kiếm theo Mã Khoa  hoặc Mã chu 
+        for (int i = 0; i < n; i++) {
+              if ( input.trim().equalsIgnoreCase(dskhoa[i].getMaChu().trim())
+                    || input.equals(Integer.toString(dskhoa[i].getMaKhoa()))
+                       && Integer.valueOf(dskhoa[i].getTrangThai()).equals(1)) {
+              dskhoa[i].xuat();
+            }
+
+        }
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println();
+
+    }
+
+
+    
     // ---------------------- Ghi file ----------------------
     public void writeFile() {
         File f = new File("DAO\\khoa.txt");

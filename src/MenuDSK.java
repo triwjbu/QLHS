@@ -45,7 +45,9 @@ public class MenuDSK {
                 case 5:
                     dskhoa.sua();
                     break;
-                case 6:
+                case 6: 
+                    dskhoa.tim();     
+                case 7:
                     dskhoa.writeFile();
                     break;
                 default:

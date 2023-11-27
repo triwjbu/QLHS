@@ -20,7 +20,8 @@ public class MenuDSL {
                                 + "           3.Them lop moi.\n"
                                 + "           4.Xoa lop.\n"
                                 + "           5.Sua lop.\n"
-                                + "           6.Ghi danh sach lop vao file.\n"
+                                + "           6.Tim kiem lop.\n"  
+                                + "           7.Ghi danh sach lop vao file.\n"
                                 + "           0.Thoat khoi chuong trinh.\n"
                                 +"Ban muon chon chuc nang nao: ");
             try {
@@ -47,6 +48,9 @@ public class MenuDSL {
                     dsLop.sua();
                     break;
                 case 6:
+                    dsLop.tim();
+                    break;
+                case 7:
                     dsLop.writeFile();
                     break;
                 default:

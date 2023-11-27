@@ -9,6 +9,8 @@ public class Lop {
     private int trangThai = 1;
     Scanner sc = new Scanner(System.in);
 
+    private Lop dsLop[];
+
     public Lop(int maLop, String tenLop, String khoa, String coVanHocTap, int trangThai) {
         this.maLop = maLop;
         this.tenLop = tenLop;
@@ -88,7 +90,7 @@ public class Lop {
     }
 
     public void xuat() {
-        System.out.println(toString());
+        System.out.printf("|\t %-8s \t|\t %-30s \t|\t %-15s \t|\t %-20s \t|\n", maLop, tenLop, khoa, coVanHocTap);
     }
 
     public void sua() {
