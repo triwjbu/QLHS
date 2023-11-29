@@ -7,3 +7,8 @@
 7;fjoe;fjeofj;fjoefj;1;
 8;thanh;thanh;thanh;1;
 9;ko;ko;ko;1;
+10;co�;co�;co�;1;
+11;ab;ab;ab;1;
+12;th;th;th;1;
+13;rg;rg;rg;1;
+14;fe;fe;fe;1;

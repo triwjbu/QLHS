@@ -61,7 +61,7 @@ public class DSGiangVien {
 
         Scanner sc = new Scanner(System.in);
         System.out.print("\nNhap so giang vien can them ");
-        int a = sc.nextInt();
+        int a = Integer.parseInt(sc.nextLine());
         if (a <= 0) {
             System.out.print("Gia tri khong phu hop!\n1.Nhap lai \n2.Thoat");
             int choose = sc.nextInt();

@@ -1,10 +1,21 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.security.Provider.Service;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class DSQuanLiKhoa {
@@ -33,35 +44,22 @@ public class DSQuanLiKhoa {
 
     // -------------------Xuất danh sách -----------------
     public void xuat() {
-        int n = 0;
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("|\tMa khoa\t|\tTen khoa\t\t|\tMa chu\t|");
+        System.out.println("-----------------------------------------------------------------");
+
         for (int i = 0; i < dskhoa.length; i++) {
             if (Integer.valueOf(dskhoa[i].getTrangThai()).equals(1)) {
-                System.out.println("Khoa " + ++n + " la:");
-                System.out.println(dskhoa[i]);
-                 dskhoa[i].xuat();
+                dskhoa[i].xuat();
             }
         }
+
+        System.out.println("-----------------------------------------------------------------");
     }
 
-    // ---------------------Thêm giáo viên mới ------------------------
+    // ---------------------Thêm Khoa ------------------------
     public void them() {
         System.out.println("Them khoa moi:");
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("\nNhap so khoa can them ");
-        int a = sc.nextInt();
-        if (a <= 0) {
-            System.out.print("Gia tri khong phu hop!\n1.Nhap lai \n2.Thoat");
-            int choose = sc.nextInt();
-            switch (choose) {
-                case 1:
-                    them();
-                    break;
-                default:
-                    break;
-            }
-        } else {
-            for (int i = 0; i < a; i++) {
         n = dskhoa.length;
         dskhoa = Arrays.copyOf(dskhoa, n + 1);
         dskhoa[n] = new Khoa();
@@ -69,8 +67,6 @@ public class DSQuanLiKhoa {
         dskhoa[n].nhapkhoa();
         n++;
     }
-   }
- } 
 
     public void them(Khoa x) {
         n = dskhoa.length;
@@ -79,7 +75,7 @@ public class DSQuanLiKhoa {
         n++;
     }
 
-    // ---------------------- Xoa 1 Sinh Vien -----------------------------------
+    // ---------------------- Xoa 1 Khoa -----------------------------------
     public void xoa() throws IOException {
         Scanner sc = new Scanner(System.in);
         readFile();
@@ -94,7 +90,7 @@ public class DSQuanLiKhoa {
             }
         }
         if (check == 0) {
-            System.out.printf("Ma sinh vien khong ton tai !!!\n1.Nhap lai\n2.Exit\n");
+            System.out.printf("Ma Khoa  khong ton tai !!!\n1.Nhap lai\n2.Exit\n");
             int choose = sc.nextInt();
             switch (choose) {
                 case 1:
@@ -140,12 +136,12 @@ public class DSQuanLiKhoa {
         System.out.print("Nhap thong tin Khoa can tim: ");
         String input = sc.nextLine();
 
-        // hàm tìm kiếm theo Mã Khoa  hoặc Mã chu 
+        // hàm tìm kiếm theo Mã Khoa hoặc Mã chu
         for (int i = 0; i < n; i++) {
-              if ( input.trim().equalsIgnoreCase(dskhoa[i].getMaChu().trim())
+            if (input.trim().equalsIgnoreCase(dskhoa[i].getMaChu().trim())
                     || input.equals(Integer.toString(dskhoa[i].getMaKhoa()))
-                       && Integer.valueOf(dskhoa[i].getTrangThai()).equals(1)) {
-              dskhoa[i].xuat();
+                            && Integer.valueOf(dskhoa[i].getTrangThai()).equals(1)) {
+                dskhoa[i].xuat();
             }
 
         }
@@ -155,8 +151,6 @@ public class DSQuanLiKhoa {
 
     }
 
-
-    
     // ---------------------- Ghi file ----------------------
     public void writeFile() {
         File f = new File("DAO\\khoa.txt");
@@ -182,7 +176,7 @@ public class DSQuanLiKhoa {
     public void readFile() throws IOException {
         int i = 0;
         dskhoa = new Khoa[0];
-        FileReader fr = new FileReader("DAO\\sinhvien.txt");
+        FileReader fr = new FileReader("DAO\\khoa.txt");
         BufferedReader br = new BufferedReader(fr);
         try {
             String line = br.readLine();
@@ -194,7 +188,7 @@ public class DSQuanLiKhoa {
                 int trangThai = Integer.valueOf(tmp[3]);
                 i++;
                 dskhoa = Arrays.copyOf(dskhoa, i);
-                dskhoa[i - 1] = new Khoa(maKhoa,khoa,maChu,trangThai);
+                dskhoa[i - 1] = new Khoa(maKhoa, khoa, maChu, trangThai);
                 line = br.readLine();
             }
         } catch (Exception e) {
