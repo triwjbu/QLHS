@@ -70,7 +70,7 @@ public class DSQuanLiLop {
         System.out.println("them lop moi: ");
 
         System.out.print("nhap so lop ban muon them: ");
-        int temp = sc.nextInt();
+        int temp = Integer.parseInt(sc.nextLine());
         if (temp <= 0) {
             System.out.print("\ngia tri khong hop le!!!\n1.Nhap lai \n2.Thoat");
             int choose = sc.nextInt();

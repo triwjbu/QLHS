@@ -19,7 +19,8 @@ public class MenuDSK {
                             + "             3.Them khoa moi.\n"
                             + "             4.xoa khoa.\n"
                             + "             5.sua khoa.\n"
-                            + "             6.Ghi danh sach khoa vo file.\n"
+                            + "             6.tim kim khoa.\n"
+                            + "             7.Ghi danh sach khoa vo file.\n"
                             + "             0.Thoat khoi chuong trinh.\n"
                             + "Ban muon lam gi: ");
             try {
@@ -46,7 +47,8 @@ public class MenuDSK {
                     dskhoa.sua();
                     break;
                 case 6: 
-                    dskhoa.tim();     
+                    dskhoa.tim();  
+                    break;    
                 case 7:
                     dskhoa.writeFile();
                     break;

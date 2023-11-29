@@ -81,7 +81,7 @@ public class Khoa {
     }
 
     public void xuat() {
-        System.out.println(toString());
+        System.out.println("|\t" + getMaKhoa() + "\t|\t" + getKhoa() + "\t|\t" + getMaChu() + "\t|");
     }
 
     public void sua() {
