@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class DSQuanLiKhoa {
+public class DSQuanLiKhoa  extends Khoa{
     private Khoa dskhoa[];
     Scanner sc = new Scanner(System.in);
     int n;
@@ -104,8 +104,13 @@ public class DSQuanLiKhoa {
     }
 
     // -------------------------- Sua(Edit) ---------------------------------------
-    public void sua() throws IOException {
-        readFile();
+    public void sua() {
+        try {
+            readFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         Scanner sc = new Scanner(System.in);
         System.out.printf("Nhap ma khoa muon sua: ");
         int editID = sc.nextInt();

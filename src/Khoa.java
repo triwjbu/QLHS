@@ -1,6 +1,8 @@
+import java.io.Serializable;
+import java.util.Objects;
 import java.util.Scanner;
 
-public class Khoa {
+public class Khoa implements Comparable<Khoa>,Serializable{
     private String khoa;
     private int maKhoa;
     private String maChu;
@@ -86,5 +88,27 @@ public class Khoa {
 
     public void sua() {
         setKhoa(khoa);
+    }
+
+    // kiểm tra xem hai đối tượng có bằng nhau không.
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Khoa other = (Khoa) obj;
+        return Objects.equals(this.maKhoa, other.maKhoa);
+    }
+
+    // so sánh hai đối tượng của lớp Khoa để có thể sắp xếp chúng.
+    @Override
+    public int compareTo(Khoa o) {
+        return Integer.compare(this.maKhoa,o.maKhoa);
     }
 }
