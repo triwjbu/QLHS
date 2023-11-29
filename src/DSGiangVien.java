@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DSGiangVien {
+public class DSGiangVien extends GiangVien {
     private GiangVien dsgv[];
     Scanner sc = new Scanner(System.in);
     int n;
@@ -128,8 +128,13 @@ public class DSGiangVien {
     }
 
     // -------------------------- Sua(Edit) ---------------------------------------
-    public void sua() throws IOException {
-        readFile();
+    public void sua(){
+        try {
+            readFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         Scanner sc = new Scanner(System.in);
         System.out.printf("Nhap ma giang vien muon sua: ");
         int editID = sc.nextInt();

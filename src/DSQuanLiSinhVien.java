@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class DSQuanLiSinhVien {
+public class DSQuanLiSinhVien extends SinhVien {
     private SinhVien dssv[];
     static Scanner sc = new Scanner(System.in);
     int n;
@@ -131,8 +131,13 @@ public class DSQuanLiSinhVien {
     }
 
     // -------------------------- Sua(Edit) ---------------------------------------
-    public void sua() throws IOException {
-        readFile();
+    public void sua(){
+        try {
+            readFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         System.out.printf("Nhap ma sinh vien muon sua: ");
         int editID = sc.nextInt();
         int check = 0;

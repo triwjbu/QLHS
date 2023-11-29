@@ -1,6 +1,8 @@
+import java.io.Serializable;
+import java.util.Objects;
 import java.util.Scanner;
 
-public class Lop {
+public class Lop implements Comparable<Lop>,Serializable{
     private static int maLoptemp = 1;
     private int maLop;
     private String tenLop;
@@ -100,5 +102,28 @@ public class Lop {
         setKhoa(sc.nextLine());
         System.out.println("moi nhap ten co van hoc tap: ");
         setCoVanHocTap(sc.nextLine());
+    }
+
+
+    // kiểm tra xem hai đối tượng có bằng nhau không.
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Lop other = (Lop) obj;
+        return Objects.equals(this.maLop, other.maLop);
+    }
+
+    // so sánh hai đối tượng của lớp Lop để có thể sắp xếp chúng.
+    @Override
+    public int compareTo(Lop o) {
+        return Integer.compare(this.maLop,o.maLop);
     }
 }

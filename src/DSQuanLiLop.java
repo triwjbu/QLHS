@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class DSQuanLiLop {
+public class DSQuanLiLop extends Lop{
     private Lop dsLop[];
     Scanner sc = new Scanner(System.in);
     int n;
@@ -135,8 +135,12 @@ public class DSQuanLiLop {
     }
 
     // ---------------------- sua(edit) ---------------------------------
-    public void sua() throws IOException {
-        readFile();
+    public void sua() {
+        try {
+            readFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.printf("nhap ma lop ban muon sua: ");
         int findID = sc.nextInt();
         int check = 0;
