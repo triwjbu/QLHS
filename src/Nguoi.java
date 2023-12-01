@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Nguoi {
-    private static int iDtemp = 1;
+    private static int iDtemp = 0;
     private int iD;
     private String ten;
     private String ngaySinh;

@@ -28,6 +28,7 @@ public class DSGiangVien extends GiangVien {
             dsgv[i] = new GiangVien();
             dsgv[i].nhap();
         }
+        writeFile();
     }
 
     // UPDATE
@@ -35,22 +36,21 @@ public class DSGiangVien extends GiangVien {
     // -------------------Xuất danh sách -----------------
     public void xuat() {
         System.out.println(
-                "------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-5s | %-15s | %-10s | %-4s | %-15s | %-12s | %-15s | %-12s | %-14s | %-11s |\n",
+                "+-------+--------------------------------------------------------------------------------------------------------------------------------------------+");
+        System.out.printf("| %-5s | %-17s | %-10s | %-4s | %-15s | %-12s | %-19s | %-12s | %-14s | %-11s |\n",
                 "MGV", "Ho va ten", "Ngay sinh", "GT", "Dia chi", "SDT", "Chuyen mon", "Luong gio", "So gio lam",
                 "TienLuong");
         System.out.println(
-                "------------------------------------------------------------------------------------------------------------------------------------------------");
+                "+-------+--------------------------------------------------------------------------------------------------------------------------------------------+");
         for (int i = 0; i < dsgv.length; i++) {
 
             if (Integer.valueOf(dsgv[i].getTrangThai()).equals(1)) {
                 dsgv[i].xuat();
             }
+            System.out.println(
+                    "+-------+--------------------------------------------------------------------------------------------------------------------------------------------+");
 
         }
-        System.out.println(
-                "------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println();
     }
 
     // Update có thể thêm 1 hoặc nhiều giảng viên
@@ -128,7 +128,7 @@ public class DSGiangVien extends GiangVien {
     }
 
     // -------------------------- Sua(Edit) ---------------------------------------
-    public void sua(){
+    public void sua() {
         try {
             readFile();
         } catch (IOException e) {
@@ -256,10 +256,11 @@ public class DSGiangVien extends GiangVien {
                 int maGV = Integer.valueOf(tmp[9]);
                 String chuyenMon = tmp[10];
                 int trangThai = Integer.valueOf(tmp[11]);
+                int chunhiem = Integer.valueOf(tmp[12]);
                 i++;
                 dsgv = Arrays.copyOf(dsgv, i);
                 dsgv[i - 1] = new GiangVien(iD, ten, ngaySinh, gioiTinh, diachi, sdt, email, luongGio, soGio, maGV,
-                        chuyenMon, trangThai);
+                        chuyenMon, trangThai, chunhiem);
                 line = br.readLine();
             }
         } catch (Exception e) {
