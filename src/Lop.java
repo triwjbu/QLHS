@@ -3,9 +3,10 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Lop implements Comparable<Lop>,Serializable{
-    private static int maLoptemp = 1;
+    private static int maLoptemp = 0;
     private int maLop;
     private String tenLop;
+    private String maKhoa;
     private String khoa;
     private String coVanHocTap;
     private int trangThai = 1;
@@ -13,9 +14,10 @@ public class Lop implements Comparable<Lop>,Serializable{
 
     private Lop dsLop[];
 
-    public Lop(int maLop, String tenLop, String khoa, String coVanHocTap, int trangThai) {
+    public Lop(int maLop, String tenLop,String maKhoa, String khoa, String coVanHocTap, int trangThai) {
         this.maLop = maLop;
         this.tenLop = tenLop;
+        this.maKhoa = maKhoa;
         this.khoa = khoa;
         this.coVanHocTap = coVanHocTap;
         this.trangThai = trangThai;
@@ -24,6 +26,7 @@ public class Lop implements Comparable<Lop>,Serializable{
     public Lop(Lop x) {
         maLop = x.maLop;
         tenLop = x.tenLop;
+        maKhoa = x.maKhoa;
         khoa = x.khoa;
         coVanHocTap = x.coVanHocTap;
         trangThai = x.trangThai;
@@ -43,6 +46,14 @@ public class Lop implements Comparable<Lop>,Serializable{
 
     public void setMaLop(int maLop) {
         this.maLop = maLop;
+    }
+
+    public String getMaKhoa() {
+        return maKhoa;
+    }
+
+    public void setMaKhoa(String maKhoa) {
+        this.maKhoa = maKhoa;
     }
 
     public String getTenLop() {
@@ -80,15 +91,15 @@ public class Lop implements Comparable<Lop>,Serializable{
     public void nhap() {
         System.out.print("moi nhap ten lop: ");
         setTenLop(sc.nextLine());
-        System.out.print("moi nhap khoa: ");
-        setKhoa(sc.nextLine());
-        System.out.print("moi nhap co van hoc tap cua lop: ");
+        System.out.print("moi ma khoa: ");
+        setMaKhoa(sc.nextLine());
+        System.out.print("moi nhap ma co van hoc tap cua lop: ");
         setCoVanHocTap(sc.nextLine());
     }
 
     @Override
     public String toString() {
-        return maLop + ";" + tenLop + ";" + khoa + ";" + coVanHocTap + ";" + trangThai + ";";
+        return maLop + ";" + tenLop + ";"+ maKhoa + ";" + khoa + ";" + coVanHocTap + ";" + trangThai + ";";
     }
 
     public void xuat() {
@@ -99,7 +110,7 @@ public class Lop implements Comparable<Lop>,Serializable{
         System.out.println("moi nhap ten lop: ");
         setTenLop(sc.nextLine());
         System.out.println("moi nhap khoa: ");
-        setKhoa(sc.nextLine());
+        setMaKhoa(sc.nextLine());
         System.out.println("moi nhap ten co van hoc tap: ");
         setCoVanHocTap(sc.nextLine());
     }

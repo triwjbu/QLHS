@@ -1,25 +1,16 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.security.Provider.Service;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
-public class DSQuanLiLop extends Lop{
+public class DSQuanLiLop extends Lop {
     private Lop dsLop[];
+    private static DSQuanLiKhoa dsk;
+    private static DSGiangVien dsgv;
     Scanner sc = new Scanner(System.in);
     int n;
 
@@ -28,17 +19,80 @@ public class DSQuanLiLop extends Lop{
 
     // ------------ Nhập mới danh sách ---------------
     public void nhap() {
-        // nhập n từ bàn phím
+        // Nhập số lớp từ bàn phím
         System.out.println("Nhap so lop can them:");
         n = sc.nextInt();
         sc.nextLine();
-        // nhap n lop
-        dsLop = new Lop[n];
 
+        // Nhập thông tin cho từng lớp
+        dsLop = new Lop[n];
+        nhapmoi();
+        writeFile();
+    }
+
+    public void nhapmoi() {
         for (int i = 0; i < n; i++) {
+            System.out.println("Nhap thong tin lop thu " + (i + 1) + " : ");
+            themlop(i);
+        }
+    }
+
+    public void themlop(int i) {
+        while (true) {
+
             dsLop[i] = new Lop();
             dsLop[i].nhap();
+
+            // Kiểm tra tồn tại của khoa
+            if (checkExistKhoa(dsLop[i].getMaKhoa()) != 1) {
+                System.out.println("Nhap lai !! Khoa khong ton tai\n");
+                continue; // Yêu cầu nhập lại thông tin cho lớp
+            }
+
+            // Kiểm tra giáo viên
+            int result = checkExistGV(dsLop[i].getCoVanHocTap());
+            if (result == -1) {
+                System.out.println("Giao vien khong ton tai !!");
+                System.out.println("Nhap lai !! \n");
+                continue; // Yêu cầu nhập lại thông tin cho lớp
+            } else if (result == 2) {
+                System.out.println("Giao vien da co lop chu nhiem !!");
+                System.out.println("Nhap lai !! \n");
+                continue; // Yêu cầu nhập lại thông tin cho lớp
+            }
+
+            // lấy tên khoa từ mã
+            dsk = new DSQuanLiKhoa();
+            try {
+                dsk.readFile();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            for (Khoa khoa : dsk.getDskhoa()) {
+                if (khoa.getMaChu().equalsIgnoreCase(dsLop[i].getMaKhoa())) {
+                    dsLop[i].setKhoa(khoa.getKhoa());
+                }
+
+            }
+
+            // lấy tên giáo viên từ mã
+            dsgv = new DSGiangVien();
+            try {
+                dsgv.readFile();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            for (GiangVien gv : dsgv.getDsgv()) {
+                if (String.valueOf(gv.getMaGV()).equalsIgnoreCase(String.valueOf(dsLop[i].getCoVanHocTap()))) {
+                    dsLop[i].setCoVanHocTap(gv.getTen());
+                }
+
+            }
             System.out.println();
+            // Nếu không có lỗi, thoát khỏi vòng lặp
+            break;
         }
     }
 
@@ -89,8 +143,7 @@ public class DSQuanLiLop extends Lop{
 
                 dsLop[n] = new Lop();
                 dsLop[n].setMaLop(n + 1);
-                dsLop[n].nhap();
-
+                themlop(n);
                 n++;
             }
         }
@@ -152,7 +205,7 @@ public class DSQuanLiLop extends Lop{
                 String khoa = dsLop[i].getKhoa();
                 String coVanHocTap = dsLop[i].getCoVanHocTap();
 
-                dsLop[i].sua();
+                sualop(i);
                 if (dsLop[i].getTenLop().equals(Empty)) {
                     dsLop[i].setTenLop(tenLop);
                 }
@@ -172,12 +225,73 @@ public class DSQuanLiLop extends Lop{
         writeFile();
     }
 
+    public void sualop(int i) {
+        while (true) {
+            // hàm set lại chủ nhiêm cho hàm sửa
+            updateChuNhiem(dsLop[i].getCoVanHocTap());
+
+            dsLop[i] = new Lop();
+            dsLop[i].sua();
+
+            // Kiểm tra tồn tại của khoa
+            if (checkExistKhoa(dsLop[i].getMaKhoa()) != 1) {
+                System.out.println("Nhap lai !! Khoa khong ton tai\n");
+                continue; // Yêu cầu nhập lại thông tin cho lớp
+            }
+
+            // Kiểm tra giáo viên
+            int result = checkExistGV(dsLop[i].getCoVanHocTap());
+            if (result == -1) {
+                System.out.println("Giao vien khong ton tai !!");
+                System.out.println("Nhap lai !! \n");
+                continue; // Yêu cầu nhập lại thông tin cho lớp
+            } else if (result == 2) {
+                System.out.println("Giao vien da co lop chu nhiem !!");
+                System.out.println("Nhap lai !! \n");
+                continue; // Yêu cầu nhập lại thông tin cho lớp
+            }
+
+            // lấy tên khoa từ mã
+            dsk = new DSQuanLiKhoa();
+            try {
+                dsk.readFile();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            for (Khoa khoa : dsk.getDskhoa()) {
+                if (khoa.getMaChu().equalsIgnoreCase(dsLop[i].getMaKhoa())) {
+                    dsLop[i].setKhoa(khoa.getKhoa());
+                }
+
+            }
+
+            // lấy tên giáo viên từ mã
+            dsgv = new DSGiangVien();
+            try {
+                dsgv.readFile();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            for (GiangVien gv : dsgv.getDsgv()) {
+                if (String.valueOf(gv.getMaGV()).equalsIgnoreCase(String.valueOf(dsLop[i].getCoVanHocTap()))) {
+                    dsLop[i].setCoVanHocTap(gv.getTen());
+                }
+
+            }
+
+            // Nếu không có lỗi, thoát khỏi vòng lặp
+            break;
+        }
+    }
+
     // ---------------------- tim kiem lop ----------------------
     public void tim() {
         n = dsLop.length;
         System.out.print("Nhap thong tin lop ma ban muon tim: ");
         String input = sc.nextLine();
-        
+
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("|\t %-8s \t|\t %-30s \t|\t %-15s \t|\t %-20s \t|\n", "Ma Lop", "Ten Lop", "Khoa",
@@ -233,12 +347,13 @@ public class DSQuanLiLop extends Lop{
                 String tmp[] = line.split(";");
                 int maLop = Integer.valueOf(tmp[0]);
                 String tenLop = tmp[1];
-                String khoa = tmp[2];
-                String coVanHocTap = tmp[3];
-                int trangThai = Integer.valueOf(tmp[4]);
+                String maKhoa = tmp[2];
+                String khoa = tmp[3];
+                String coVanHocTap = tmp[4];
+                int trangThai = Integer.valueOf(tmp[5]);
                 i++;
                 dsLop = Arrays.copyOf(dsLop, i);
-                dsLop[i - 1] = new Lop(maLop, tenLop, khoa, coVanHocTap, trangThai);
+                dsLop[i - 1] = new Lop(maLop, tenLop, maKhoa, khoa, coVanHocTap, trangThai);
                 line = br.readLine();
             }
         } catch (IOException e) {
@@ -255,5 +370,69 @@ public class DSQuanLiLop extends Lop{
 
     public void setLop(Lop[] dsLop) {
         this.dsLop = dsLop;
+    }
+
+    // kiểm tra tồn tại khoa
+    public int checkExistKhoa(String Khoa) {
+        DSQuanLiKhoa dsk = new DSQuanLiKhoa();
+        try {
+            dsk.readFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        for (Khoa khoa : dsk.getDskhoa()) {
+            if (khoa.getMaChu().equalsIgnoreCase(Khoa)) {
+                return 1;
+            }
+        }
+        return -1;
+    }
+
+    // kiểm tra tồn tại giảng viên
+    public int checkExistGV(String GiangVien) {
+        dsgv = new DSGiangVien();
+        try {
+            dsgv.readFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        for (GiangVien gv : dsgv.getDsgv()) {
+            if (String.valueOf(gv.getMaGV()).equalsIgnoreCase(GiangVien)) {
+
+                if (gv.getChunhiem() == 0) {
+                    // giảng viên đã có lớp chủ nhiệm
+                    return 2;
+                } else {
+                    gv.setChunhiem(0);
+                    dsgv.writeFile();
+                    // giảng viên phù hợp
+                    return 1;
+                }
+            }
+        }
+        // giảng viên không tồn tại
+        return -1;
+    }
+
+    public void updateChuNhiem(String GiangVien) {
+        DSGiangVien dsgv = new DSGiangVien();
+        try {
+            dsgv.readFile();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        for (GiangVien gv : dsgv.getDsgv()) {
+            if (gv.getTen().trim().equalsIgnoreCase(GiangVien)) {
+
+                if (gv.getChunhiem() == 0) {
+                    gv.setChunhiem(1);
+                    dsgv.writeFile();
+                }
+            }
+        }
+
     }
 }
