@@ -1,4 +1,4 @@
-public class DSQuanLiMonHoc {
+public class DSQuanLiMonHoc extends MonHoc {
     
     
 }

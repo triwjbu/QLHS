@@ -7,23 +7,20 @@ public class MenuDSL {
     public void menu() throws IOException {
         Scanner sc = new Scanner(System.in);
         DSQuanLiLop dsLop = new DSQuanLiLop();
-
         dsLop.readFile();
-
         int choose = 0;
         do {
             System.out.println("---------------------MENU---------------------");
             System.out.println("Vui long chon chuc nang: ");
             System.out.println(
-                                "           1.Tao moi danh sach lop\n"
-                                + "           2.In danh sach lop ra man hinh.\n"               
-                                + "           3.Them lop moi.\n"
-                                + "           4.Xoa lop.\n"
-                                + "           5.Sua lop.\n"
-                                + "           6.Tim kiem lop.\n"  
-                                + "           7.Ghi danh sach lop vao file.\n"
-                                + "           0.Thoat khoi chuong trinh.\n"
-                                +"Ban muon chon chuc nang nao: ");
+                    "           1.Tao moi danh sach lop\n"
+                            + "           2.In danh sach lop ra man hinh.\n"
+                            + "           3.Them lop moi.\n"
+                            + "           4.Xoa lop.\n"
+                            + "           5.Sua lop.\n"
+                            + "           6.Tim kiem lop.\n"
+                            + "           0.Thoat khoi chuong trinh.\n"
+                            + "Ban muon chon chuc nang nao: ");
             try {
                 choose = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
@@ -50,12 +47,9 @@ public class MenuDSL {
                 case 6:
                     dsLop.tim();
                     break;
-                case 7:
-                    dsLop.writeFile();
-                    break;
                 default:
                     break;
             }
-        } while(choose != 0);
-    }    
+        } while (choose != 0);
+    }
 }

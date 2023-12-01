@@ -1,7 +1,1 @@
-1;Nguyen Van A;23/04/2004;nam;Dong Thap;1900100080;vanA@gmail.com;1;1;
-2;nguyen thi b;19/05/2003;nu;Ca Mau;07888888888;b12@gmail.com;2;1;
-3;van kim anh;30/04/2002;nu;TP HCM;0567899999;vana@gmail.com;3;1;
-4;quoc khanh;20/11/2005;nam;Binh Duong;05644444444;khanh@gmail.com;4;1;
-5;van binh;2/9/2003;nam;Binh Phuoc;0123456789;Binh@gmail.com;5;1;
-6;nguyen van a;19/11/2005;nam;Ben Tre;0788888888;a@gmail.com;6;1;
-7;hoang hoa;15/11/2009;nu;fjaifja;0987654321;hfiaifh@jgigj;7;1;
+1;nhu;1/1/1;nu;hcm;0123456789;asdhu@hu;3;a;1;

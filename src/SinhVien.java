@@ -1,23 +1,23 @@
 import java.util.Scanner;
 
 public class SinhVien extends Nguoi {
-    private static int maSvtmp = 1;
+    private static int maSvtmp = 0;
     private int maSV;
-    // private String lop;
+    private String lop;
     private int trangThai = 1;
     static Scanner sc = new Scanner(System.in);
 
-    public SinhVien(int iD, String ten, String ngaySinh, String gioiTinh,String diaChi,String sdt,String mail,int maSV,int trangThai) {
+    public SinhVien(int iD, String ten, String ngaySinh, String gioiTinh,String diaChi,String sdt,String mail,int maSV,String lop,int trangThai) {
         super(iD, ten, ngaySinh, gioiTinh,diaChi,sdt,mail);
         this.maSV = maSV;
-        // this.lop = lop;
+        this.lop = lop;
         this.trangThai = trangThai;
     }
 
     public SinhVien(SinhVien x) {
         super((SinhVien) x);
         maSV = x.maSV;
-        // lop = x.lop;
+        lop = x.lop;
         trangThai = x.trangThai;
     }
 
@@ -33,13 +33,13 @@ public class SinhVien extends Nguoi {
         this.maSV = maSV;
     }
 
-    // public String getLop() {
-    //     return lop;
-    // }
+    public String getLop() {
+        return lop;
+    }
 
-    // public void setLop(String lop) {
-    //     this.lop = lop;
-    // }
+    public void setLop(String lop) {
+        this.lop = lop;
+    }
 
     public int getTrangThai() {
         return trangThai;
@@ -52,19 +52,20 @@ public class SinhVien extends Nguoi {
     @Override
     public void nhap() {
         super.nhap();
-        // System.out.print("Nhap lop:");
-        // setLop(sc.nextLine());
+        System.out.print("Nhap ma lop:");
+        setLop(sc.nextLine());
     }
 
     @Override
     public String toString() {
-        return super.toString() + maSV + /*";" + lop +*/ ";" + trangThai + ";";
+        return super.toString() + maSV + ";" + lop + ";" + trangThai + ";";
     }
 
     public void xuat() {
-        System.out.println("|   " +maSV +"   |\t" +super.getTen() +"\t|\t"
-        +super.getNgaySinh()+"\t|"+"\t"+ super.getGioiTinh()+"\t|   "+super.getDiaChi()+"\t|\t"+super.getSDT()+"\t|\t"
-        +super.getMail()+"\t|");
+
+        System.out.printf("| %-5s | %-17s | %-10s | %-4s | %-15s | %-12s | %-19s | %-12s |\n",
+                maSV, super.getTen(), super.getNgaySinh(), super.getGioiTinh(), super.getDiaChi(), super.getSDT(),
+                super.getMail(), lop);
     }
 
     @Override

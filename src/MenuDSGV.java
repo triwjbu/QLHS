@@ -20,7 +20,7 @@ public class MenuDSGV {
                             + "             4.Xoa giao vien.\n"
                             + "             5.Sua giao vien.\n"
                             + "             6.Tim kiem giao vien.\n"
-                            + "             7.Ghi danh sach giao vien vo file.\n"
+                            // + "             7.Ghi danh sach giao vien vo file.\n"
                             + "             0.Thoat khoi chuong trinh.\n\n"
                             + "Ban muon lam gi: ");
             try {
@@ -55,9 +55,9 @@ public class MenuDSGV {
                     dsgv.tim();
                     break;
                     
-                case 7:
-                    dsgv.writeFile();
-                    break;
+                // case 7:
+                //     dsgv.writeFile();
+                //     break;
                 default:
                     break;
             }

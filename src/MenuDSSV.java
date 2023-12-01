@@ -20,7 +20,7 @@ public class MenuDSSV {
                             + "             4.Xoa sinh vien.\n"
                             + "             5.Sua sinh vien.\n"
                             + "             6.Tim kiem sinh vien.\n"
-                            + "             7.Ghi danh sach sinh vien vo file.\n"
+                            // + "             7.Ghi danh sach sinh vien vo file.\n"
                             + "             0.Thoat khoi chuong trinh.\n"
                             + "Ban muon lam gi: ");
             try {
@@ -49,9 +49,9 @@ public class MenuDSSV {
                 case 6:
                     dssv.tim();
                     break;
-                case 7:
-                    dssv.writeFile();
-                    break;
+                // case 7:
+                //     dssv.writeFile();
+                //     break;
                 default:
                     break;
             }
