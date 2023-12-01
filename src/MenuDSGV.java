@@ -4,10 +4,10 @@ import java.util.Scanner;
 public class MenuDSGV {
 
     public void menu() throws IOException {
-        Scanner sc = new Scanner(System.in);
-        DSGiangVien dsgv = new DSGiangVien();
+        try (Scanner sc = new Scanner(System.in)) {
+            DSGiangVien dsgv = new DSGiangVien();
 
-        dsgv.readFile();
+            dsgv.readFile();
 
         int choose = 0;
         do {
@@ -20,7 +20,7 @@ public class MenuDSGV {
                             + "             4.Xoa giao vien.\n"
                             + "             5.Sua giao vien.\n"
                             + "             6.Tim kiem giao vien.\n"
-                            // + "             7.Ghi danh sach giao vien vo file.\n"
+                            + "             7.Ghi danh sach giao vien vo file.\n"
                             + "             0.Thoat khoi chuong trinh.\n\n"
                             + "Ban muon lam gi: ");
             try {
@@ -38,26 +38,26 @@ public class MenuDSGV {
                     dsgv.xuat();
                     break;
 
-                // update
-                case 3:
-                    dsgv.them();
-                    break;
-                    
-                case 4:
-                    dsgv.xoa();
-                    break;
-                case 5:
-                    dsgv.sua();
-                    break;
+                    // update
+                    case 3:
+                        dsgv.them();
+                        break;
+                        
+                    case 4:
+                        dsgv.xoa();
+                        break;
+                    case 5:
+                        dsgv.sua();
+                        break;
 
                 // update
                 case 6:
                     dsgv.tim();
                     break;
                     
-                // case 7:
-                //     dsgv.writeFile();
-                //     break;
+                case 7:
+                    dsgv.writeFile();
+                    break;
                 default:
                     break;
             }

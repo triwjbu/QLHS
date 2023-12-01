@@ -1,21 +1,10 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.security.Provider.Service;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class DSQuanLiSinhVien extends SinhVien {
@@ -181,6 +170,7 @@ public class DSQuanLiSinhVien extends SinhVien {
         String Empty = "";
         for (int i = 0; i < dssv.length; i++) {
             if (Integer.valueOf(dssv[i].getMaSV()).equals(editID)) {
+                int temp = dssv[i].getMaSV();
                 check = 1;
                 String ten = dssv[i].getTen();
                 String ngaySinh = dssv[i].getNgaySinh();
@@ -189,6 +179,11 @@ public class DSQuanLiSinhVien extends SinhVien {
                 String sdt = dssv[i].getSDT();
                 String email = dssv[i].getMail();
                 themSv(i);
+<<<<<<< HEAD
+=======
+                dssv[i].setMaSV(temp);
+                 dssv[i].setiD(temp);
+>>>>>>> 39a572416fbc05413b9dbf5d094acee28bb71bd0
                 if (dssv[i].getTen().equals(Empty)) {
                     dssv[i].setTen(ten);
                 }

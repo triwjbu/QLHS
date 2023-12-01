@@ -4,9 +4,12 @@ public class GiangVien extends NhanVien {
     private String chuyenMon;
     private int trangThai = 1;
     private int chunhiem =1;
+<<<<<<< HEAD
 
     // update
     private GiangVien dsgv[];
+=======
+>>>>>>> 39a572416fbc05413b9dbf5d094acee28bb71bd0
 
     public GiangVien(int iD, String ten, String ngaySinh, String gioiTinh, String diaChi, String sdt, String mail,
             int luongGio, int soGio, int maGV, String chuyenMon,
